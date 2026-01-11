@@ -1,0 +1,477 @@
+/* CSS Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette - Light Theme */
+    --bg-color: #f5f5f5;
+    --calculator-bg: #ffffff;
+    --display-bg: #f9f9f9;
+    --text-color: #333333;
+    --button-bg: #ffffff;
+    --button-border: #e0e0e0;
+    --operator-color: #2196F3;
+    --equals-bg: #2196F3;
+    --equals-text: #ffffff;
+    --delete-color: #d32f2f;
+    --delete-bg: #ffebee;
+    --scientific-bg: #e3f2fd;
+    --scientific-text: #1976D2;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Calculator Section */
+.calculator-section {
+    flex: 1;
+    background-color: var(--calculator-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.calculator-section h1 {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Display Area */
+.display {
+    background-color: var(--display-bg);
+    border: 1px solid var(--button-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 100px;
+}
+
+.expression-display {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 18px;
+    color: #666;
+    text-align: right;
+    min-height: 25px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.result-display {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: right;
+    min-height: 40px;
+    word-wrap: break-word;
+}
+
+.display.error {
+    background-color: var(--delete-bg);
+}
+
+.display.error .result-display {
+    color: var(--delete-color);
+    font-size: 18px;
+}
+
+/* Controls (Mode Toggle & Memory) */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.mode-toggle {
+    display: flex;
+    gap: 5px;
+}
+
+.mode-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--button-border);
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.mode-btn.active {
+    background-color: var(--operator-color);
+    color: white;
+    border-color: var(--operator-color);
+}
+
+.memory-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.memory-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--button-border);
+    background-color: #f0f0f0;
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    min-width: 40px;
+    transition: all 0.1s ease;
+}
+
+.memory-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.memory-btn:active {
+    transform: scale(0.98);
+}
+
+/* Scientific Button Pad */
+.scientific-pad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.sci-btn {
+    padding: 12px;
+    border: 1px solid var(--button-border);
+    background-color: var(--scientific-bg);
+    color: var(--scientific-text);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.1s ease;
+}
+
+.sci-btn:hover {
+    background-color: #bbdefb;
+    transform: scale(1.02);
+}
+
+.sci-btn:active {
+    transform: scale(0.98);
+}
+
+/* Basic Button Pad */
+.button-pad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+button {
+    padding: 16px;
+    border: 1px solid var(--button-border);
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.1s ease;
+    user-select: none;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+    box-shadow: var(--shadow);
+    transform: scale(1.02);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.num-btn {
+    background-color: var(--button-bg);
+}
+
+.op-btn {
+    background-color: #f0f0f0;
+    color: var(--operator-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.op-btn:hover {
+    background-color: #e3f2fd;
+}
+
+.special-btn {
+    background-color: var(--delete-bg);
+    color: var(--delete-color);
+    font-weight: bold;
+}
+
+.special-btn:hover {
+    background-color: #ffcdd2;
+}
+
+.equals-btn {
+    background-color: var(--equals-bg);
+    color: var(--equals-text);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.equals-btn:hover {
+    background-color: #1976D2;
+}
+
+/* History Section */
+.history-section {
+    width: 320px;
+    background-color: var(--calculator-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--button-border);
+}
+
+.history-header h2 {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.clear-history-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    background-color: var(--delete-bg);
+    color: var(--delete-color);
+    border: 1px solid var(--delete-color);
+}
+
+.clear-history-btn:hover {
+    background-color: var(--delete-color);
+    color: white;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.history-empty {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.history-item {
+    background-color: #fafafa;
+    border: 1px solid var(--button-border);
+    border-radius: 6px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    animation: slideDown 0.3s ease;
+}
+
+.history-item:hover {
+    background-color: #f0f0f0;
+    box-shadow: var(--shadow);
+    transform: translateX(-2px);
+}
+
+.history-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.history-expression {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 14px;
+    color: #666;
+    flex: 1;
+    word-wrap: break-word;
+}
+
+.history-delete {
+    background: none;
+    border: none;
+    color: var(--delete-color);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.history-delete:hover {
+    background-color: var(--delete-bg);
+}
+
+.history-result {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 3px;
+}
+
+.history-timestamp {
+    font-size: 11px;
+    color: #999;
+}
+
+/* Scrollbar Styling */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .history-section {
+        width: 100%;
+        max-height: 400px;
+    }
+
+    .calculator-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .calculator-section h1 {
+        font-size: 20px;
+    }
+
+    .display {
+        padding: 15px;
+    }
+
+    .expression-display {
+        font-size: 14px;
+    }
+
+    .result-display {
+        font-size: 24px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .scientific-pad {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+    }
+
+    .sci-btn {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .button-pad {
+        gap: 6px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mode-toggle {
+        justify-content: center;
+    }
+
+    .memory-buttons {
+        justify-content: center;
+    }
+}

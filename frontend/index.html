@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Calculator Section -->
+        <div class="calculator-section">
+            <h1>Scientific Calculator</h1>
+
+            <!-- Display Area -->
+            <div class="display">
+                <div class="expression-display" id="expressionDisplay">0</div>
+                <div class="result-display" id="resultDisplay"></div>
+            </div>
+
+            <!-- Mode Toggle & Memory Buttons -->
+            <div class="controls">
+                <div class="mode-toggle">
+                    <button class="mode-btn active" id="basicModeBtn" onclick="switchMode('basic')">Basic</button>
+                    <button class="mode-btn" id="scientificModeBtn" onclick="switchMode('scientific')">Scientific</button>
+                </div>
+                <div class="memory-buttons">
+                    <button class="memory-btn" onclick="memoryClick('MC')">MC</button>
+                    <button class="memory-btn" onclick="memoryClick('MR')">MR</button>
+                    <button class="memory-btn" onclick="memoryClick('M+')">M+</button>
+                    <button class="memory-btn" onclick="memoryClick('M-')">M-</button>
+                </div>
+            </div>
+
+            <!-- Scientific Button Pad (Hidden by default) -->
+            <div class="scientific-pad" id="scientificPad" style="display: none;">
+                <button class="sci-btn" onclick="functionClick('sin(')">sin</button>
+                <button class="sci-btn" onclick="functionClick('cos(')">cos</button>
+                <button class="sci-btn" onclick="functionClick('tan(')">tan</button>
+                <button class="sci-btn" onclick="insertConstant('π')">π</button>
+                <button class="sci-btn" onclick="insertConstant('e')">e</button>
+
+                <button class="sci-btn" onclick="functionClick('asin(')">asin</button>
+                <button class="sci-btn" onclick="functionClick('acos(')">acos</button>
+                <button class="sci-btn" onclick="functionClick('atan(')">atan</button>
+                <button class="sci-btn" onclick="functionClick('log(')">log</button>
+                <button class="sci-btn" onclick="functionClick('ln(')">ln</button>
+
+                <button class="sci-btn" onclick="functionClick('sqrt(')">√</button>
+                <button class="sci-btn" onclick="appendOperator('²')">x²</button>
+                <button class="sci-btn" onclick="appendOperator('³')">x³</button>
+                <button class="sci-btn" onclick="appendOperator('^')">x^y</button>
+                <button class="sci-btn" onclick="functionClick('1/')">1/x</button>
+
+                <button class="sci-btn" onclick="appendOperator('!')">n!</button>
+                <button class="sci-btn" onclick="functionClick('abs(')">|x|</button>
+                <button class="sci-btn" onclick="appendOperator('(')">(</button>
+                <button class="sci-btn" onclick="appendOperator(')')">)</button>
+                <button class="sci-btn" onclick="functionClick('exp(')">e^x</button>
+            </div>
+
+            <!-- Basic Button Pad -->
+            <div class="button-pad">
+                <button class="num-btn" onclick="numberClick('7')">7</button>
+                <button class="num-btn" onclick="numberClick('8')">8</button>
+                <button class="num-btn" onclick="numberClick('9')">9</button>
+                <button class="op-btn" onclick="operatorClick('÷')">÷</button>
+                <button class="special-btn" onclick="deleteClick()">DEL</button>
+
+                <button class="num-btn" onclick="numberClick('4')">4</button>
+                <button class="num-btn" onclick="numberClick('5')">5</button>
+                <button class="num-btn" onclick="numberClick('6')">6</button>
+                <button class="op-btn" onclick="operatorClick('×')">×</button>
+                <button class="special-btn" onclick="clearClick()">C</button>
+
+                <button class="num-btn" onclick="numberClick('1')">1</button>
+                <button class="num-btn" onclick="numberClick('2')">2</button>
+                <button class="num-btn" onclick="numberClick('3')">3</button>
+                <button class="op-btn" onclick="operatorClick('-')">-</button>
+                <button class="special-btn" onclick="clearEntryClick()">CE</button>
+
+                <button class="num-btn" onclick="numberClick('0')">0</button>
+                <button class="num-btn" onclick="decimalClick()">.</button>
+                <button class="num-btn" onclick="negateClick()">±</button>
+                <button class="op-btn" onclick="operatorClick('+')">+</button>
+                <button class="equals-btn" onclick="calculateClick()">=</button>
+            </div>
+        </div>
+
+        <!-- History Sidebar -->
+        <div class="history-section">
+            <div class="history-header">
+                <h2>History</h2>
+                <button class="clear-history-btn" onclick="clearAllHistory()">Clear All</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <p class="history-empty">No calculations yet</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
